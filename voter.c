@@ -282,11 +282,11 @@ void voterDetails(int loggedInVoterSno) {
 
 bool checkIfVoterVoted(int loggedInVoterSno, FILE *voteFile) {
     struct Vote vote;
-    fseek(voteFile, 0, SEEK_SET); // Move file pointer to the beginning
+    fseek(voteFile, 0, SEEK_SET);
 
     while (fscanf(voteFile, "%d %s", &vote.voterSno, vote.candidateName) != EOF) {
         if (vote.voterSno == loggedInVoterSno) {
-            return true; // Voter has already cast a vote
+            return true;
         }
     }
 
@@ -296,15 +296,15 @@ bool checkIfVoterVoted(int loggedInVoterSno, FILE *voteFile) {
 bool checkIfValidCandidate(const char *candidateName, FILE *candidateFile) {
     struct Candidate candidate;
 
-    fseek(candidateFile, 0, SEEK_SET); // Move file pointer to the beginning
+    fseek(candidateFile, 0, SEEK_SET);
 
     while (fscanf(candidateFile, "%s %s %s", candidate.name, candidate.party, candidate.constituency) != EOF) {
         if (strcmp(candidate.name, candidateName) == 0) {
-            return true; // Candidate name is valid
+            return true;
         }
     }
 
-    return false; // Candidate name is not valid
+    return false;
 }
 
 
